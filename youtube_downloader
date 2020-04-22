@@ -1,0 +1,20 @@
+#!/bin/python
+# Author: Coder Guy
+
+#importing the libraries
+import pytube,requests
+
+#getting the link from the user
+link=input('Enter the url:')
+
+#requesting the link
+r=requests.get(link)
+
+#checking if the link is valid
+if r.status_code==200:
+    yt=pytube.YouTube(link)
+    stream=yt.streams.first()
+    downloaded=stream.download('/root/Desktop/Youtube Videos')
+    print('Download is complete')
+else:
+    print("Not a valid link")
